@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const { PORT } = require('./config')
 
-// Carga y abre la conexión con la base de datos
+// Carga y abre la conexión con la base de datos...
 require('./db')
 
 // Rutas
