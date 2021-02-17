@@ -17,7 +17,7 @@ router.put('/:id', (req, res) => {
 
 // DELETE by ID
 router.delete('/:id', (req, res) => {
-  res.send('Cliente deleted successfully!')
+  res.send('Client deleted successfully!')
 })
 
 module.exports = router
