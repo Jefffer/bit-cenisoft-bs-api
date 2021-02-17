@@ -6,8 +6,8 @@ const bookSchema = new mongoose.Schema({
   description: { type: String, required: false },
   unitValue: { type: Number, required: true, min: 0 },
   categories: { type: Array, required: false }
-}, {
-  timestamps: true
+// }, {
+  // timestamps: true
 })
 
 const Book = mongoose.model('books', bookSchema)
