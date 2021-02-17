@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 // Child model
 const detailSchema = new mongoose.Schema({
   bookId: {type: Schema.Types.ObjectId, ref: "books"},
-  bookName: { type: String, required: true },
-  unitValue: { type: Number, required: true, min: 0 },
-  amount: { type: Number, required: true, min: 0 }
+  bookName: { type: String},
+  unitValue: { type: Number, min: 0 },
+  amount: { type: Number, min: 0 }
 })
 
 // Parent model
