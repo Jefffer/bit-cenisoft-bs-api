@@ -4,10 +4,9 @@ const createBook = (req, res) => {
   const newBook = new Book(req.body)
   newBook.save((error, bookSaved) => {
     if (error) {
-      console.error('Error saving book ', error)
-      res.status(500).send(error)
+      res.status(422).send(error)
     } else {
-      res.send(bookSaved)
+      res.status(201).send(bookSaved)
     }
   })
 }
@@ -17,7 +16,7 @@ const deleteBook = (req, res) => {
     if (error) {
       res.status(500).send(error)
     } else {
-      res.send(result)
+      res.status(204)
     }
   })
 }
@@ -42,7 +41,7 @@ const getBooks = (req, res) => {
 
   Book.find(query, (error, books) => {
     if (error) {
-      res.status(404).send(error)
+      res.status(500).send(error)
     } else {
       res.send(books)
     }
