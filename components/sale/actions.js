@@ -70,6 +70,18 @@ const getSale = (req, res) => {
   })
 }
 
+const getSalesByClientId = (req, res) => {
+  Sale.find({clientId: req.params.id}, (error, sale) => {
+    if (error) {
+      res.status(500).send(error)
+    } else if (sale) {
+      res.send(sale)
+    } else {
+      res.status(404).send({})
+    }
+  })
+}
+
 const updateSale = (req, res) => {
   Sale.updateOne({ _id: req.params.id }, req.body, (error, result) => {
     if (error) {
@@ -80,4 +92,4 @@ const updateSale = (req, res) => {
   })
 }
 
-module.exports = { createSale, getSale, deleteSale, updateSale }
+module.exports = { createSale, getSale, deleteSale, updateSale, getSalesByClientId }

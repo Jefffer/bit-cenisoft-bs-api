@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const { createSale, getSale, deleteSale, updateSale } = require('./actions')
+const { createSale, getSale, deleteSale, updateSale, getSalesByClientId } = require('./actions')
 
 // GET by ID
 router.get('/:id', getSale)
+
+// GET by Client ID
+router.get('/client/:id', getSalesByClientId)
 
 // POST Create a Sale
 router.post('/', createSale)
