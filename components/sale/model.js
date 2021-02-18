@@ -11,7 +11,7 @@ const detailSchema = new mongoose.Schema({
 // Parent model
 const saleSchema = new mongoose.Schema({
   date: { type: String, required: true },
-  total: { type: String, required: true },
+  total: { type: Number, min: 0 },
   clientId: {type: mongoose.Schema.Types.ObjectId, ref: "clients"},
   details: [detailSchema]
 })
