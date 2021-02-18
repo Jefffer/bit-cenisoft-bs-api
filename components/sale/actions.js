@@ -1,11 +1,38 @@
 const Sale = require('./model')
+const Book = require('../book/model')
 
 const createSale = (req, res) => {
   const newSale = new Sale(req.body)
-  // Save Details list to Sale model
-  req.body.datails.forEach(function(detail) {
-    newSale.details.push(detail)
-  });
+  newSale.details = []
+
+  // Get Book data to save it into Sale.Detail model.
+  // With this code we only need the bookId and the amount in the Details request like this:
+    // {
+    //   "date": "02/02/2021",
+    //   "total": 2000,
+    //   "clientId": "602d75079c0dc52358003260",
+    //   "details": [
+    //       {
+    //           "bookId": "602d92f6bf4a4a53dc60b9fd",
+    //           "amount": 2
+    //       },
+    //       {
+    //           "bookId": "602dbdbb81605050c4fd257b",
+    //           "amount": 1
+    //       }
+    //   ]
+    // } 
+  // The bookName and unitValue is setted automatically.
+  req.body.details.forEach(function(detail) {
+    Book.findById(detail.bookId, (error, book) => {
+      if (book){
+        detail.bookName = book.name
+        detail.unitValue = book.unitValue
+        newSale.details.push(detail)
+      }
+    })
+  });    
+
   newSale.save((error, saleSaved) => {    
     if (error) {
       res.status(422).send(error)
