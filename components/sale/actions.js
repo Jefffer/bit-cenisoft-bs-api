@@ -4,6 +4,7 @@ const Book = require('../book/model')
 const createSale = (req, res) => {
   const newSale = new Sale(req.body)
   newSale.details = []
+  var newTotal = 0
 
   // Get Book data to save it into Sale.Detail model.
   // With this code we only need the bookId and the amount in the Details request like this:
@@ -29,9 +30,15 @@ const createSale = (req, res) => {
         detail.bookName = book.name
         detail.unitValue = book.unitValue
         newSale.details.push(detail)
+        // Update total value
+        newTotal = newTotal + (book.unitValue * detail.amount)
       }
     })
-  });    
+  });
+
+  newSale.total
+
+
 
   newSale.save((error, saleSaved) => {    
     if (error) {
