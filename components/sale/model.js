@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // Child model
 const detailSchema = new mongoose.Schema({
-  bookId: {type: Schema.Types.ObjectId, ref: "books"},
+  bookId: {type: mongoose.Schema.Types.ObjectId, ref: "books"},
   bookName: { type: String},
   unitValue: { type: Number, min: 0 },
   amount: { type: Number, min: 0 }
@@ -12,7 +12,7 @@ const detailSchema = new mongoose.Schema({
 const saleSchema = new mongoose.Schema({
   date: { type: String, required: true },
   total: { type: String, required: true },
-  clientId: {type: Schema.Types.ObjectId, ref: "clients"},
+  clientId: {type: mongoose.Schema.Types.ObjectId, ref: "clients"},
   details: [detailSchema]
 })
 
