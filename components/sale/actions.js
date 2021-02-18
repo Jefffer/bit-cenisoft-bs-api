@@ -31,14 +31,12 @@ const createSale = (req, res) => {
         detail.unitValue = book.unitValue
         newSale.details.push(detail)
         // Update total value
-        newTotal = newTotal + (book.unitValue * detail.amount)
+        // newTotal += (book.unitValue * detail.amount)
       }
     })
   });
 
-  newSale.total
-
-
+  // newSale.total = newTotal
 
   newSale.save((error, saleSaved) => {    
     if (error) {
@@ -49,15 +47,16 @@ const createSale = (req, res) => {
   })
 }
 
-// const deleteBook = (req, res) => {
-//   Book.findByIdAndDelete(req.params.id, (error, result) => {
-//     if (error) {
-//       res.status(500).send(error)
-//     } else {
-//       res.status(204)
-//     }
-//   })
-// }
+const deleteSale = (req, res) => {
+  Sale.findByIdAndDelete(req.params.id, (error, result) => {
+    if (error) {
+      res.status(500).send(error)
+    } else {
+      res.send(result)
+      // res.status(204)
+    }
+  })
+}
 
 const getSale = (req, res) => {
   Sale.findById(req.params.id, (error, sale) => {
@@ -71,14 +70,14 @@ const getSale = (req, res) => {
   })
 }
 
-// const updateBook = (req, res) => {
-//   Book.updateOne({ _id: req.params.id }, req.body, (error, result) => {
-//     if (error) {
-//       res.status(422).send(error)
-//     } else {
-//       res.send(result)
-//     }
-//   })
-// }
+const updateSale = (req, res) => {
+  Sale.updateOne({ _id: req.params.id }, req.body, (error, result) => {
+    if (error) {
+      res.status(422).send(error)
+    } else {
+      res.send(result)
+    }
+  })
+}
 
-module.exports = { createSale, getSale }
+module.exports = { createSale, getSale, deleteSale, updateSale }

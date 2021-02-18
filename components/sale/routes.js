@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createSale, getSale } = require('./actions')
+const { createSale, getSale, deleteSale, updateSale } = require('./actions')
 
 // GET by ID
 router.get('/:id', getSale)
@@ -9,9 +9,9 @@ router.get('/:id', getSale)
 router.post('/', createSale)
 
 // PUT Update a Sale's info
-// router.put('/:id', updateSale)
+router.put('/:id', updateSale)
 
 // DELETE by ID
-// router.delete('/:id', deleteSale)
+router.delete('/:id', deleteSale)
 
 module.exports = router
